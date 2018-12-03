@@ -115,6 +115,33 @@
             ctx.fillRect(box1.x, box1.y, box1.w, box1.h)
         });
 
+//----------------------------------------------------------------------------------Problem 7----------------------------------------------------------------------------------        
+        $("#btn3").click(function () {
+
+            $("#container").append("<label>NewLabel</label>: <input type='text' name='txtbox'></br>")
+
+        });
+
+//----------------------------------------------------------------------------------Problem 8----------------------------------------------------------------------------------        
+        $("#btn4").click(function () {
+
+            $("#container").css("width", "25%").css("height", "100px");
+
+        });
+
+//----------------------------------------------------------------------------------Problem 9----------------------------------------------------------------------------------        
+        $("#btnPower").click(function () {
+
+            var x = $("#xValue").val();
+            var y = $("#yValue").val();
+
+            var pow = Math.pow(x, y);
+
+            alert(pow);
+
+        });
+
+
         });
 
 //----------------------------------------------------------------------------------Problem 5 & 6----------------------------------------------------------------------------------        
@@ -154,9 +181,7 @@
             }
             return boxes;
         }
-
-        
-
+      
 
         //returns a random number
         function GetRandom(max) {
@@ -195,6 +220,18 @@
 
     <canvas id="mycanvas"></canvas>
     <button id="btn2">check</button>
+
+    <div id="container">
+    </div>
+    <button id="btn3">Add elements</button>
+    <button id='btn4'>change CSS</button>
+    <div id="div4">
+    X to the Y power:</br>
+    <label id="xInput">Value for x</label>: <input type="text" id="xValue"></br>
+    <label id="yInput">Value for y</label>: <input type="text" id="yValue"></br>
+    <button id="btnPower">POW IT!</button>
+
+
 
 
 
