@@ -31,6 +31,27 @@
             border: 2px solid black;
             background-color: lightgray;
         }
+
+        table, tr, td {
+            border: 1px solid black;
+        }
+
+        p {
+            font-size: xx-large;
+            fontFamily: Arial;
+            color: blue;
+            border: 1px solid black;
+        }
+
+        .highlight {
+            background-color: yellow;
+            font-size: medium;
+            color: black;
+            border: 3px solid green;
+
+        }
+
+
     </style>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -109,10 +130,12 @@
 
         $("#btn2").click(function () {
             BoxMaker();
-            var box1 = new Rectangle(0, 0, 10, 10, 2, GetRandomColor())
+
+            for(i = 0;i < boxes.length; i++) {
+                boxes[i].display();
+            }
 
 
-            ctx.fillRect(box1.x, box1.y, box1.w, box1.h)
         });
 
 //----------------------------------------------------------------------------------Problem 7----------------------------------------------------------------------------------        
@@ -141,6 +164,28 @@
 
         });
 
+//----------------------------------------------------------------------------------Problem 10----------------------------------------------------------------------------------        
+        $("#btnTable").click(function () {
+
+            $("#table").append("<tr><td>append</td><td>new</td><td>row</td></tr>");
+            $("#row1").after("<tr><td>append</td><td>new</td><td>row</td></tr>");
+
+        });
+
+//----------------------------------------------------------------------------------Problem 11----------------------------------------------------------------------------------        
+        $("#btnWillPowersFade").click(function () {
+
+            $("#fadeAway").fadeToggle();
+
+        });
+
+//----------------------------------------------------------------------------------Problem 12 & 13----------------------------------------------------------------------------------        
+        $("#btnHighlight").click(function () {
+
+            $("#fadeAway").toggleClass("highlight");
+
+        });
+
 
         });
 
@@ -154,32 +199,32 @@
         var bh = 10;
 
         //function constructor for Rectangles
-        function Rectangle(x, y, w, h, lw, color) {
+        function Rectangle(x, y, w, h, lw, color, ctx) {
             this.x = x;
             this.y = y;
             this.w = w;
             this.h = h;
             this.lw = lw; 
             this.color = color; 
+            this.ctx = ctx;
 
             //display function - not working
             this.display = function () {
-                ctx.fillStyle = this.color;
-                ctx.lineWidth = this.lw;
-                ctx.fillRect(this.x, this.y, this.w, this.h);
+                this.ctx.fillStyle = this.color;
+                this.ctx.lineWidth = this.lw;
+                this.ctx.fillRect(this.x, this.y, this.w, this.h);
             }
         }
 
         function BoxMaker() {
 
             for(i = 0; i < 5; i++) {
-                var rect = new Rectangle(bx, by, bw, bh, "2px", GetRandomColor())
+                var rect = new Rectangle(bx, by, bw, bh, 2, GetRandomColor(), ctx)
                 boxes.push(rect);
 
                 bw += 10;
                 bh += 10;
             }
-            return boxes;
         }
       
 
@@ -230,11 +275,28 @@
     <label id="xInput">Value for x</label>: <input type="text" id="xValue"></br>
     <label id="yInput">Value for y</label>: <input type="text" id="yValue"></br>
     <button id="btnPower">POW IT!</button>
+    </div>
+
+    <table id="table">
+    <tr id="row1">
+        <td>1</td>
+        <td>2</td>
+        <td>3</td>
+    </tr>
+    <tr id="row2">
+        <td>4</td>
+        <td>5</td>
+        <td>6</td>
+    </tr>
+    </table>
+    <button id="btnTable">Add to table</button>
+
+    <p id="fadeAway">
+    This paragraph fades out #WillPowers
+    </p>
+    <button id="btnWillPowersFade">Fade Away!</button>
+    <button id="btnHighlight">Highlight</button>
 
 
-
-
-
-    
 </body>
 </html>
